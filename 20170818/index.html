@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>background-size测试</title>
+	<style type="text/css">
+		.inline-block {
+			display: inline-block;
+			vertical-align: top;
+		}
+		.half-size {
+			width: 128px;
+			height: 128px;
+		}
+		.one-size {
+			width: 256px;
+			height: 256px;
+		}
+		.one-half-size {
+			width: 384px;
+			height: 384px;
+		}
+		.border-gray {
+			border: 1px solid gray;
+		}
+		.bg-lena {
+			background-image: url('./lena.jpg');
+		}
+		.bg-lena-left {
+			background-image: url('./lena-left.jpg');
+		}
+		.bg-lena-top {
+			background-image: url('./lena-top.jpg');
+		}
+		.bg-lena-right {
+			background-image: url('./lena-right.jpg');
+		}
+		.bg-lena-bottom {
+			background-image: url('./lena-bottom.jpg');
+		}
+		.bg-norepeat {
+			background-repeat: no-repeat;
+		}
+	</style>
+</head>
+<body>
+<h2>background-size默认显示效果</h2>
+<p>background-size的默认值是auto，下面就是同一张图片在不同大小div中的显示效果：</p>
+<div class="inline-block">
+	<div class="half-size border-gray bg-lena bg-norepeat"></div>
+	<div class="descption">容器大小：128x128<br>图片大小：256x256</div>
+</div>
+<div class="inline-block">
+	<div class="one-size border-gray bg-lena bg-norepeat"></div>
+	<div class="descption">容器大小：256x256<br>图片大小：256x256</div>
+</div>
+<div class="inline-block">
+	<div class="one-half-size border-gray bg-lena bg-norepeat"></div>
+	<div class="descption">容器大小：384x384<br>图片大小：256x256</div>
+</div>
+<p>从显示结果来看，不设置background-size时，图片保持原始大小进行显示。</p>
+<h2>使用length控制background-size</h2>
+<p>background-size的值可以设置具体的数值，格式为"宽度 高度"，如果只设置一个值，则第二个值会被设置为 "auto"。下面就是设置不同length的显示效果：</p>
+<div class="inline-block">
+	<div class="one-size border-gray bg-lena bg-norepeat" style="background-size: 128px"></div>
+	<div class="descption">容器大小：256x256<br>图片大小：256x256<br>background-size: 128px;</div>
+</div>
+<div class="inline-block">
+	<div class="one-size border-gray bg-lena-left bg-norepeat" style="background-size: 128px"></div>
+	<div class="descption">容器大小：256x256<br>图片大小：128x256<br>background-size: 128px;</div>
+</div>
+<div class="inline-block">
+	<div class="one-size border-gray bg-lena-left bg-norepeat" style="background-size: 128px 128px;"></div>
+	<div class="descption">容器大小：256x256<br>图片大小：128x256<br>background-size: 128px 128px;</div>
+</div>
+<div class="inline-block">
+	<div class="one-size border-gray bg-lena bg-norepeat" style="background-size: 128px 256px;"></div>
+	<div class="descption">容器大小：256x256<br>图片大小：256x256<br>background-size: 128px 256px;</div>
+</div>
+<p>从显示结果来看，只设置宽度时，高度的值等比进行缩放，图片并没有变形；如果宽度和高度的值都设定了的话，则按照设置进行显示。</p>
+
+<h2>使用percentage控制background-size</h2>
+<p>background-size的值可以设置百分比，格式为"宽度 高度"，如果只设置一个值，则第二个值会被设置为 "auto"。下面就是设置不同length的显示效果：</p>
+<div class="inline-block">
+	<div class="one-size border-gray bg-lena bg-norepeat" style="background-size: 50%"></div>
+	<div class="descption">容器大小：256x256<br>图片大小：256x256<br>background-size: 50%;</div>
+</div>
+<div class="inline-block">
+	<div class="one-size border-gray bg-lena-left bg-norepeat" style="background-size: 50%"></div>
+	<div class="descption">容器大小：256x256<br>图片大小：128x256<br>background-size: 50%;</div>
+</div>
+<div class="inline-block">
+	<div class="one-size border-gray bg-lena-left bg-norepeat" style="background-size: 50% 50%;"></div>
+	<div class="descption">容器大小：256x256<br>图片大小：128x256<br>background-size: 50% 50%;</div>
+</div>
+<div class="inline-block">
+	<div class="one-size border-gray bg-lena bg-norepeat" style="background-size: 50% 100%;"></div>
+	<div class="descption">容器大小：256x256<br>图片大小：256x256<br>background-size: 50% 100%;</div>
+</div>
+<p>注意，使用百分比时是以父元素的大小为参考标准来设置背景图像的宽度和高度，因此判断背景图片是否拉伸时可以转换成用length单位的设置再进行判断。</p>
+
+<h2>使用cover控制background-size</h2>
+<p>把背景图像扩展至足够大，以使背景图像完全覆盖背景区域。因此背景图像的某些部分也许无法显示在背景定位区域中。下面就是同一尺寸的图片在不同的容器中的显示效果：</p>
+<div class="inline-block">
+	<div class="half-size border-gray bg-lena bg-norepeat" style="background-size: cover;"></div>
+	<div class="descption">容器大小：128x128<br>图片大小：256x256<br>background-size: cover;</div>
+</div>
+<div class="inline-block">
+	<div class="one-size border-gray bg-lena bg-norepeat" style="background-size: cover;"></div>
+	<div class="descption">容器大小：256x256<br>图片大小：256x256<br>background-size: cover;</div>
+</div>
+<div class="inline-block">
+	<div class="one-half-size border-gray bg-lena bg-norepeat" style="background-size: cover;"></div>
+	<div class="descption">容器大小：384x384<br>图片大小：256x256<br>background-size: cover;</div>
+</div>
+<p>从显示结果来看，如果图片的长宽比例和容器的长宽比例相同，则使用`background-size: cover`属性的结果就是图片会自动进行缩放以全部填满容器。</p>
+
+<p>如果图片的长宽比和背景的长宽比不一致的情况，则显示效果如下：</p>
+<div class="inline-block">
+	<div class="one-size border-gray bg-lena-right bg-norepeat"></div>
+	<div class="descption">容器大小：256x256<br>图片大小：200x256<br>background-size: default;</div>
+</div>
+<div class="inline-block">
+	<div class="one-size border-gray bg-lena-right bg-norepeat" style="background-size: cover;"></div>
+	<div class="descption">容器大小：256x256<br>图片大小：200x256<br>background-size: cover;</div>
+</div>
+<div class="inline-block">
+	<div class="one-size border-gray bg-lena-bottom bg-norepeat"></div>
+	<div class="descption">容器大小：256x256<br>图片大小：256x200<br>background-size: default;</div>
+</div>
+<div class="inline-block">
+	<div class="one-size border-gray bg-lena-bottom bg-norepeat" style="background-size: cover;"></div>
+	<div class="descption">容器大小：256x256<br>图片大小：256x200<br>background-size: cover;</div>
+</div>
+<p>从显示结果来看，有两点是确认的：1. 图片不会被拉伸变形；2. 容器被全部铺满，换句话说“图片长宽比例大的部分会被裁剪”。</p>
+
+<h2>使用contain控制background-size</h2>
+<p>把图像图像扩展至最大尺寸，以使其宽度和高度完全适应内容区域。下面就是同一尺寸的图片在不同的容器中的显示效果：</p>
+<div class="inline-block">
+	<div class="half-size border-gray bg-lena bg-norepeat" style="background-size: contain;"></div>
+	<div class="descption">容器大小：128x128<br>图片大小：256x256<br>background-size: contain;</div>
+</div>
+<div class="inline-block">
+	<div class="one-size border-gray bg-lena bg-norepeat" style="background-size: contain;"></div>
+	<div class="descption">容器大小：256x256<br>图片大小：256x256<br>background-size: contain;</div>
+</div>
+<div class="inline-block">
+	<div class="one-half-size border-gray bg-lena bg-norepeat" style="background-size: contain;"></div>
+	<div class="descption">容器大小：384x384<br>图片大小：256x256<br>background-size: contain;</div>
+</div>
+<p>从显示结果来看，如果图片的长宽比例和容器的长宽比例相同，则使用`background-size: contain`属性的结果就是图片会自动进行缩放以全部填满容器。亦即：在图片的长宽比例和容器的长宽比例相同的情况下，`background-size: cover`和`background-size: contain`的效果是一致的。</p>
+
+<p>如果图片的长宽比和背景的长宽比不一致的情况，则显示效果如下：</p>
+<div class="inline-block">
+	<div class="one-size border-gray bg-lena-right bg-norepeat"></div>
+	<div class="descption">容器大小：256x256<br>图片大小：200x256<br>background-size: default;</div>
+</div>
+<div class="inline-block">
+	<div class="one-size border-gray bg-lena-right bg-norepeat" style="background-size: contain;"></div>
+	<div class="descption">容器大小：256x256<br>图片大小：200x256<br>background-size: contain;</div>
+</div>
+<div class="inline-block">
+	<div class="one-size border-gray bg-lena-bottom bg-norepeat"></div>
+	<div class="descption">容器大小：256x256<br>图片大小：256x200<br>background-size: default;</div>
+</div>
+<div class="inline-block">
+	<div class="one-size border-gray bg-lena-bottom bg-norepeat" style="background-size: contain;"></div>
+	<div class="descption">容器大小：256x256<br>图片大小：256x200<br>background-size: contain;</div>
+</div>
+<p>从显示结果来看，有两点是确认的：1. 图片不会被拉伸变形；2. 容器并没有被全部铺满，换句话说“图片长宽比例小的部分会有留白”。</p>
+
+<h2>总结</h2>
+<ul>
+	<li>如果图片的长宽比例和容器的长宽比例相同，使用cover和contain的效果相同</li>
+	<li>如果要保证容器全部被图片铺满，则使用cover</li>
+	<li>如果要保证图片全部要显示出来(则容器肯定有可能有留白)，则使用contain</li>
+	<li>如无必要，请尽量不要使用length或percentage的方式来设置</li>
+	<li>length或percentage只传一个参数的时候，图片不会被拉伸变形。只有两个参数都传且和图片长宽比不一致时，图片才会有拉伸变形</li>
+	<li>使用percentage的时候，是以容器的大小为基准值，因此可以换算成length的形式进行显示效果计算</li>
+</ul>
+</body>
+</html>
